@@ -1,0 +1,103 @@
+.task-img {
+  width: 48px;
+}
+
+.task-title {
+  font-size: 24px;
+}
+
+.task-title > img {
+  margin-right: 10px;
+}
+
+.task-nav-func-right-border-radius {
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.task-nav-func {
+  margin-top: 20px;
+}
+
+.task-title-separator {
+  margin-top: 5px;
+}
+
+.no-margin-separator {
+  margin: 1px;
+}
+
+.bottom-margin-separator {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.no-margin-separator {
+  margin: 0;
+}
+
+
+.user-icon {
+  width: 32px;
+}
+
+.ticket-vote {
+  margin-left: 10px;
+}
+
+.section-title {
+  font-weight: 500;
+}
+
+.margin-right-5 {
+  margin-right: 5px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.comment-box {
+  margin-top: 10px;
+}
+
+.comment-title {
+  margin-bottom: 10px;
+}
+
+.comment-body {
+  border-bottom: 1px solid lightgray;
+}
+
+.comment-body-text {
+  margin-bottom: 5px;
+}
+
+.comment-function {
+  color: #c1c1c1;
+  margin-left: 5px;
+  vertical-align: -webkit-baseline-middle
+}
+
+.td-no-bottom-padding {
+  padding: 8px 8px 0 8px;
+}
+
+.description-section {
+  margin-bottom: 10px;
+}
+
+.export-function {
+  position: absolute;
+  right: 0;
+}
+
+.label, .component {
+  margin-right: 5px;
+}
+
+.start-watching-function {
+  color: #0d6efd !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}

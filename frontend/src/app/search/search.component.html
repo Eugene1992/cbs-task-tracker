@@ -1,0 +1,132 @@
+<div class="container">
+  <div style="position: relative" class="row">
+    <span id="search_title">Search</span>
+    <div class="input-group-prepend mb-3 w-auto">
+      <button class="btn btn-outline-secondary" type="button">Save as</button>
+    </div>
+    <div class="input-group-prepend mb-3 w-auto export-function">
+      <button class="btn btn-outline-secondary dropdown-toggle task-nav-func-right-border-radius" type="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-filter"></i> Filters
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><a href="#">my_opened_tasks</a></a>
+        <a class="dropdown-item" href="#"><a href="#">resolved_today</a></a>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="project">Project:</label>
+        <select [(ngModel)]="request.projectId" #project (change)="onProjectFilterChange(project.value)" name="project"
+                id="project" class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="type">Type:</label>
+        <select [(ngModel)]="request.type" #type (change)="onTypeFilterChange(type.value)" name="type" id="type" class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let ticketType of ticketTypes" value="{{ticketType}}">{{ticketType}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="status">Status:</label>
+        <select [(ngModel)]="request.status" #status (change)="onStatusFilterChange(status.value)" name="status" id="status" class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let status of ticketStatuses" value="{{status}}">{{status}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="priority">Priority:</label>
+        <select [(ngModel)]="request.priority" #priority (change)="onPriorityFilterChange(priority.value)" name="priority" id="priority" class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let priority of priorities" value="{{priority}}">{{priority}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="reporter">Reporter:</label>
+        <select [(ngModel)]="request.reporterId" #reporter (change)="onReporterFilterChange(reporter.value)" name="assigneeId" id="reporter" data-live-search="true"
+                class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label class="fw-500" for="assignee">Assignee:</label>
+        <select [(ngModel)]="request.assigneeId" #assignee (change)="onAssigneeFilterChange(assignee.value)" name="assigneeId" id="assignee" data-live-search="true"
+                class="form-control selectpicker">
+          <option value="" selected>Nothing selected</option>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">T</th>
+        <th scope="col">P</th>
+        <th scope="col">Key</th>
+        <th scope="col">Title</th>
+        <th scope="col">Status</th>
+        <th scope="col">Reporter</th>
+        <th scope="col">Assignee</th>
+        <th scope="col">Components</th>
+        <th scope="col">Labels</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td><img src="assets/ticket-type-icons/story_icon.png" alt=""></td>
+        <td><img src="assets/ticket-priority-icons/normal_icon.png" alt=""></td>
+        <td>{{ticket.key}}</td>
+        <td><a routerLink="/task/{{ticket.id}}">{{ticket.title}}</a></td>
+        <td><span class="badge badge-primary">{{ticket.status}}</span></td>
+        <td><a href="#" *ngIf="ticket.reporter">{{ticket.reporter.firstName}} {{ticket.reporter.lastName}}</a></td>
+        <td><a href="#" *ngIf="ticket.assignee">{{ticket.assignee.firstName}} {{ticket.assignee.lastName}}</a></td>
+        <td>
+          <span *ngFor="let component of ticket.components; let isLast = last">{{component.name}}{{isLast ? '' : ', '}}</span>
+        </td>
+        <td>
+          <span *ngFor="let label of ticket.labels; let isLast = last">{{label.name}}{{isLast ? '' : ', '}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      Showing results 1-50 of 5940579
+    </div>
+    <div class="form-group col-md-6">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">...</a></li>
+          <li class="page-item"><a class="page-link" href="#">21</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>

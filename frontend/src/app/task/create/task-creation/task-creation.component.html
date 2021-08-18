@@ -1,0 +1,75 @@
+<div *ngIf="ticketTypes" class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create issue</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label class="fw-500" for="title">Title</label>
+              <input [(ngModel)]="task.title" name="title" type="text" class="form-control" id="title">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="fw-500" for="type">Type</label>
+              <select [(ngModel)]="task.type" name="type"  id="type" class="form-control selectpicker">
+                <option *ngFor="let ticketType of ticketTypes" value="{{ticketType}}">{{ticketType}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="fw-500" for="priority">Priority</label>
+              <select [(ngModel)]="task.priority" name="priority" id="priority" class="form-control selectpicker">
+                <option *ngFor="let priority of priorities" value="{{priority}}">{{priority}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label class="fw-500" for="estimate">Original estimate</label>
+              <input [(ngModel)]="task.estimate" min="1" name="estimate" type="number" class="form-control" id="estimate">
+            </div>
+            <div class="form-group col-md-3">
+              <label class="fw-500" for="dueDate">Due date</label>
+              <input [(ngModel)]="task.dueDate" name="dueDate" type="date" class="form-control" id="dueDate">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="fw-500" for="assignee">Assignee</label>
+              <select [(ngModel)]="task.assigneeId" name="assigneeId" id="assignee" data-live-search="true" class="form-control selectpicker">
+                <option *ngFor="let user of users" value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="fw-500" for="exampleFormControlTextarea1">Description</label>
+            <textarea [(ngModel)]="task.description" name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="fw-500" for="labels">Label(s)</label>
+              <select [(ngModel)]="task.labels" name="labels" multiple data-live-search="true" id="labels" class="form-control selectpicker">
+                <option *ngFor="let label of labels" value="{{label.id}}">{{label.name}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="fw-500" for="components">Components(s)</label>
+              <select [(ngModel)]="task.components" name="components" multiple data-live-search="true" id="components" class="form-control selectpicker">
+                <option *ngFor="let component of components" value="{{component.id}}">{{component.name}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="createTask()" type="button" class="btn btn-success">Create</button>
+        <button #closeModal type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

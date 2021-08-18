@@ -1,0 +1,32 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 routerLink="/" class="my-0 mr-md-auto font-weight-normal"><img class="task-img"
+                                                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Yandex.Tracker_2018.svg/768px-Logo_Yandex.Tracker_2018.svg.png"
+                                                      alt=""> TrackMe</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn btn-primary" data-toggle="modal" href="#" data-target="#createTaskModal">Create</a>
+    <a class="dropdown">
+      <button class="notification-box btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span *ngIf="notifications" class="badge badge-success">{{notifications.length}}</span>
+        <i class="fa fa-bell"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <span *ngFor="let notification of notifications" class="dropdown-item">{{notification.text}}</span>
+        <span *ngIf="!notifications" class="dropdown-item">There are no notifications yet</span>
+      </div>
+    </a>
+    <a class="p-2 text-dark" routerLink="/search">Search</a>
+    <a class="p-2 text-dark" href="#">Enterprise</a>
+    <a class="p-2 text-dark" href="#">Support</a>
+    <a class="p-2 text-dark" (click)="send()">Pricing</a>
+  </nav>
+  <div *ngIf="!isLoggedIn">
+    <a class="btn btn-outline-primary" routerLink="/login" style="margin-right: 10px">Sign in</a>
+    <a class="btn btn-outline-primary" href="#">Sign up</a>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <a class="btn btn-outline-primary" (click)="logout()">Logout</a>
+  </div>
+
+</div>
+
+<app-task-creation></app-task-creation>
